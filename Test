@@ -1,0 +1,24 @@
+void tamgiactren(int n, float fMang[100][100]) {
+	int anchor;
+	int flag;
+	for (int i = 0; i < n-1; i++) { //n là số hàng
+		for (int j = i + 1; j < n; j++) { //n là số hàng
+			flag = true;
+			for (int k = 0; k < n; k++) { //n là số cột
+				if (fMang[j][k] != 0)
+					flag = false;
+			}
+			if (flag)
+				j++;
+			for (int k = 0; k < n; k++) { //n là số hàng
+				if (fMang[j][k] != 0) {
+					anchor = k;
+					for (int m = n-1; m >= anchor ; m--) {
+						fMang[j][m] = fMang[j][m] - ((fMang[j][anchor] / fMang[i][anchor]) * fMang[i][m]);
+					}
+					break;
+				}
+			}
+		}
+	}
+}
